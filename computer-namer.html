@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Computer Namer</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+	function init() {
+		$("#output").html('');
+		assembleString();
+	}
+	function assembleString() {
+		if ($("#location_region").val() == '') return;
+		if ($("#location_dept").val() == '') return;
+		if ($("#operating_system").val() == '') return;
+		if ($("#form_factor").val() == '') return;
+		if ($("#sys_number").val() == '' || $("#sys_number").val().length < 2) return;
+
+		// if all fields are filled, build string and display it
+		var output = '';
+		output += $("#location_region").val();
+		output += $("#location_dept").val();
+		output += $("#operating_system").val();
+		output += $("#form_factor").val();
+		output += $("#sys_number").val();
+
+		$("#output").val(output);
+		$("#output_charcount").html(output.length);
+		
+		if (output.length > 14) alert("Warning: NetBIOS name exceeds 14 characters!");
+	}
+	function disassembleString() {
+
+	}
+
+	$(document).ready(init);
+	</script>
+</head>
+<body>
+	<div id="home_link"><a href="/intranet/">Back to Home</a></div>
+	
+	<div id="output_win">
+		<label for="output">Output</label>
+		<input type="text" id="output" value="" /> <span id="output_charcount">14</span>
+	</div>
+	
+	<div id="decoder">
+		<label for="decoder">Enter computer name to decode</label>
+		<input type="text" value="" placeholder="PCName0000" />
+	</div>
+
+	<form action="">
+
+		<label for="location_region">Region</label>
+		<select id="location_region" onchange="assembleString()">
+			<option value="HOU" selected="selected">Houston</option>
+			<option value="DAL">Dallas</option>
+		</select>
+		<label for="location_dept">Department</label>
+		<select id="location_dept" onchange="assembleString()">
+			<option value="DES">Design</option>
+			<option value="DEV">Development/Programming</option>
+			<option value="EXE">Executive</option>
+			<option value="INS">Installed (Fixture)</option>
+			<option value="SUP">Customer support</option>
+			<option value="NET">Network administration</option>
+			<option value="TRN">Training</option>
+		</select>
+		<label for="operating_system">Operating System</label>
+		<select id="operating_system" onchange="assembleString()">
+			<option value="W8">Windows 8</option>
+			<option value="W7" selected="selected">Windows 7</option>
+			<option value="XP">Windows XP</option>
+			<option value="2K">Windows 2000</option>
+			<option value="MA">OSX</option>
+			<option value="LI">Linux (any distro)</option>
+		</select>
+		<label for="form_factor">Form Factor</label>
+		<select id="form_factor" onchange="assembleString()">
+			<option value="D" selected="selected">Desktop</option>
+			<option value="L">Laptop</option>
+			<option value="R">Rackmount</option>
+		</select>
+		<label for="sys_number">System Number</label>
+		<input type="text" id="sys_number" value="00" onkeyup="assembleString()" maxlength="2" />
+	</form>
+</body>
+</html>

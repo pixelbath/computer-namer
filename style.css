@@ -1,0 +1,22 @@
+body {
+	font-family: sans-serif;
+}
+label {
+	display: block;
+	margin-top: 0.5em;
+}
+#output_win {
+	position: absolute;
+	top: 0.5em;
+	left: 400px;
+	border: 1px solid #ccc;
+	width: 200px;
+	padding: 0.5em;
+}
+#output_charcount {
+	font-size: 10px;
+}
+
+#decoder {
+	display: none;
+}
